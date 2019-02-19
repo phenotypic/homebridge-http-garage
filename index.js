@@ -67,7 +67,6 @@ GarageDoorOpener.prototype = {
           this.log("[!] Error setting targetDoorState: %s", error.message);
 					callback(error);
         } else {
-          this.log("[+] Setting targetDoorState to %s", value);
           if (value == 1) {
             this.log("[*] Started closing");
             this.simulateClose();
