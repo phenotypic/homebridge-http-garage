@@ -26,6 +26,9 @@ function GarageDoorOpener(log, config) {
   this.openTime = config.openTime || 5;
   this.closeTime = config.closeTime || 5;
 
+  this.autoLock = config.autoLock || false;
+  this.autoLockDelay = config.autoLockDelay || 10;
+
   if(this.username != null && this.password != null){
     this.auth = {
       user : this.username,
@@ -72,6 +75,9 @@ GarageDoorOpener.prototype = {
             this.simulateClose();
           } else {
             this.log("[*] Started opening");
+            if (this.autoLock) {
+              this.autoLockFunction();
+            }
             this.simulateOpen();
           }
           callback();
@@ -91,8 +97,16 @@ GarageDoorOpener.prototype = {
     this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
     setTimeout(() => {
       this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED);
-      this.log("[*] Finished opening");
+      this.log("[*] Finished closing");
     }, this.closeTime * 1000);
+  },
+
+  autoLockFunction: function() {
+    this.log("[+] Waiting %s seconds for autolock", this.autoLockDelay);
+    setTimeout(() => {
+      this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.CurrentDoorState.CLOSED);
+      this.log("[*] Autolocking");
+    }, this.autoLockDelay * 1000);
   },
 
 	getName: function(callback) {
