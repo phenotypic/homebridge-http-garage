@@ -23,10 +23,8 @@ function GarageDoorOpener(log, config) {
   this.openURL = config.openURL;
   this.closeURL = config.closeURL;
 
-  this.moveTime = config.moveTime || 10;
-
-  this.targetDoorState = 1;
-  this.currentDoorState = 1;
+  this.openTime = config.openTime || 5;
+  this.closeTime = config.closeTime || 5;
 
   if(this.username != null && this.password != null){
     this.auth = {
@@ -35,7 +33,7 @@ function GarageDoorOpener(log, config) {
     };
   }
 
-  this.log(this.name, this.apiroute);
+  this.log(this.name);
 
 	this.service = new Service.GarageDoorOpener(this.name);
 }
@@ -61,47 +59,41 @@ GarageDoorOpener.prototype = {
           });
   },
 
-	getCurrentDoorState: function(callback) {
-    this.log("[*] currentDoorState :", this.currentDoorState);
-    callback(null, this.currentDoorState);
-	},
-
-  getTargetDoorState: function(callback) {
-    this.log("[*] targetDoorState :", this.targetDoorState);
-    callback(null, this.targetDoorState);
-	},
-
   setTargetDoorState: function(value, callback) {
-    this.log("[+] targetDoorState from %s to %s", this.targetDoorState, value);
-    if (value == 0) { //open
-      url = this.openURL;
-    } else {
-      url = this.closeURL;
-    }
+    this.log("[+] Setting targetDoorState to %s", value);
+    if (value == 1) { url = this.closeURL } else { url = this.openURL }
     this._httpRequest(url, '', 'GET', function (error, response, responseBody) {
         if (error) {
           this.log("[!] Error setting targetDoorState: %s", error.message);
 					callback(error);
         } else {
-          this.log("[*] Sucessfully set targetDoorState to %s", value);
-          if (value == 0) { //open
-            this.targetDoorState = 0;
-            this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPENING;
-            setTimeout(function() {
-             this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN;
-            }, this.moveTime);
-            this.currentDoorState = 0;
+          this.log("[+] Setting targetDoorState to %s", value);
+          if (value == 1) {
+            this.log("[*] Started closing");
+            this.simulateClose();
           } else {
-            this.targetDoorState = 1;
-            this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING;
-            setTimeout(function() {
-             this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED;
-            }, this.moveTime);
-            this.currentDoorState = 1;
+            this.log("[*] Started opening");
+            this.simulateOpen();
           }
           callback();
         }
     }.bind(this));
+  },
+
+  simulateOpen: function() {
+    this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPENING);
+    setTimeout(() => {
+      this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN);
+      this.log("[*] Finished opening");
+    }, this.openTime * 1000);
+  },
+
+  simulateClose: function() {
+    this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
+    setTimeout(() => {
+      this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED);
+      this.log("[*] Finished opening");
+    }, this.closeTime * 1000);
   },
 
 	getName: function(callback) {
@@ -110,6 +102,9 @@ GarageDoorOpener.prototype = {
 	},
 
 	getServices: function() {
+
+    this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED);
+    this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSED);
 
 		this.informationService = new Service.AccessoryInformation();
     this.informationService
@@ -123,12 +118,7 @@ GarageDoorOpener.prototype = {
 
     this.service
   		.getCharacteristic(Characteristic.TargetDoorState)
-  		.on('get', this.getTargetDoorState.bind(this))
       .on('set', this.setTargetDoorState.bind(this));
-
-    this.service
-      .getCharacteristic(Characteristic.CurrentDoorState)
-      .on('get', this.getCurrentDoorState.bind(this));
 
 		return [this.informationService, this.service];
 	}
