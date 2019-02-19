@@ -1,0 +1,30 @@
+{
+  "name": "homebridge-http-garage",
+  "version": "0.0.43",
+  "description": "thermostat plugin for homebridge: https://github.com/nfarina/homebridge",
+  "license": "MIT",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  },
+  "author": "Pierre-Julien Cazaux",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tommrodrigues/homebridge-http-garage.git"
+  },
+  "dependencies": {
+    "request": "^2.65.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Tommrodrigues/homebridge-http-garage/issues"
+  },
+  "homepage": "https://github.com/Tommrodrigues/homebridge-http-garage#readme",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
