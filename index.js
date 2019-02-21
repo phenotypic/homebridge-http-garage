@@ -104,7 +104,7 @@ GarageDoorOpener.prototype = {
   autoLockFunction: function() {
     this.log("[+] Waiting %s seconds for autolock", this.autoLockDelay);
     setTimeout(() => {
-      this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.CurrentDoorState.CLOSED);
+      this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSED);
       this.log("[*] Autolocking");
     }, this.autoLockDelay * 1000);
   },
