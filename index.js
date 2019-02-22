@@ -65,7 +65,7 @@ GarageDoorOpener.prototype = {
   setTargetDoorState: function(value, callback) {
     this.log("[+] Setting targetDoorState to %s", value);
     if (value == 1) { url = this.closeURL } else { url = this.openURL }
-    this._httpRequest(url, '', 'GET', function (error, response, responseBody) {
+    this._httpRequest(url, '', this.http_method, function (error, response, responseBody) {
         if (error) {
           this.log("[!] Error setting targetDoorState: %s", error.message);
 					callback(error);
@@ -109,11 +109,6 @@ GarageDoorOpener.prototype = {
     }, this.autoLockDelay * 1000);
   },
 
-	getName: function(callback) {
-		this.log("getName :", this.name);
-		callback(null, this.name);
-	},
-
 	getServices: function() {
 
     this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED);
@@ -124,10 +119,6 @@ GarageDoorOpener.prototype = {
 		  .setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
 		  .setCharacteristic(Characteristic.Model, this.model)
 		  .setCharacteristic(Characteristic.SerialNumber, this.serial);
-
-		this.service
-			.getCharacteristic(Characteristic.Name)
-			.on('get', this.getName.bind(this));
 
     this.service
   		.getCharacteristic(Characteristic.TargetDoorState)
