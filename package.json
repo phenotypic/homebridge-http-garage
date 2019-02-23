@@ -1,6 +1,6 @@
 {
   "name": "homebridge-http-garage",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Homebridge plugin to control a web-based garage",
   "main": "index.js",
   "engines": {
@@ -21,7 +21,7 @@
     "homebridge-plugin"
   ],
   "author": "Tom Rodrigues <tommyrodrigues2001@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Tommrodrigues/homebridge-http-garage/issues"
   },
