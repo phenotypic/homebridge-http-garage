@@ -4,7 +4,7 @@
 
 ## Description
 
-homebridge-http-garage exposes a garage to HomeKit and makes it controllable via simple HTTP requests, automatically simulating opening/closing times.
+homebridge-http-garage exposes a garage to HomeKit, and makes it controllable via simple HTTP requests, automatically simulating opening/closing times.
 
 ## Installation
 
