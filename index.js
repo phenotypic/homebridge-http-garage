@@ -13,8 +13,8 @@ function GarageDoorOpener(log, config) {
   this.name = config.name;
 
   this.manufacturer = config.manufacturer || 'Tom Rodrigues';
-  this.serial = config.serial || '';
-  this.model = config.model || 'homebridge-web-thermostat';
+  this.serial = config.serial;
+  this.model = config.model || 'homebridge-http-garage';
 
   this.username = config.username || null;
   this.password = config.password || null;
