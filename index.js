@@ -94,7 +94,7 @@ GarageDoorOpener.prototype = {
     this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPENING);
     setTimeout(() => {
       this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN);
-      this.log("[*] Finished opening");
+      this.log('[*] Finished opening');
     }, this.openTime * 1000);
   },
 
@@ -102,7 +102,7 @@ GarageDoorOpener.prototype = {
     this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
     setTimeout(() => {
       this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED);
-      this.log("[*] Finished closing");
+      this.log('[*] Finished closing');
     }, this.closeTime * 1000);
   },
 
@@ -110,7 +110,7 @@ GarageDoorOpener.prototype = {
     this.log('[+] Waiting %s seconds for autolock', this.autoLockDelay);
     setTimeout(() => {
       this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSED);
-      this.log("[*] Autolocking");
+      this.log('[*] Autolocking');
     }, this.autoLockDelay * 1000);
   },
 
