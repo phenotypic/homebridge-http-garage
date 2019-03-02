@@ -1,19 +1,20 @@
 var Service, Characteristic;
-var request = require("request");
+var request = require('request');
 
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
-  homebridge.registerAccessory("homebridge-http-garage", "GarageDoorOpener", GarageDoorOpener);
+  homebridge.registerAccessory('homebridge-http-garage', 'GarageDoorOpener', GarageDoorOpener);
 };
 
 function GarageDoorOpener(log, config) {
   this.log = log;
 
   this.name = config.name;
-  this.manufacturer = config.manufacturer || 'HTTP Manufacturer';
-  this.model = config.model || 'homebridge-http-garage';
-  this.serial = config.serial || 'HTTP Serial Number';
+
+  this.manufacturer = config.manufacturer || 'Tom Rodrigues';
+  this.serial = config.serial || '';
+  this.model = config.model || 'homebridge-web-thermostat';
 
   this.username = config.username || null;
   this.password = config.password || null;
@@ -44,7 +45,7 @@ function GarageDoorOpener(log, config) {
 GarageDoorOpener.prototype = {
 
   identify: function(callback) {
-    this.log("Identify requested!");
+    this.log('Identify requested!');
     callback();
   },
 
@@ -63,22 +64,22 @@ GarageDoorOpener.prototype = {
   },
 
   setTargetDoorState: function(value, callback) {
-    this.log("[+] Setting targetDoorState to %s", value);
-    if (value == 1) {
+    this.log('[+] Setting targetDoorState to %s', value);
+    if (value === 1) {
       url = this.closeURL;
     } else {
       url = this.openURL;
     }
     this._httpRequest(url, '', this.http_method, function(error, response, responseBody) {
       if (error) {
-        this.log("[!] Error setting targetDoorState: %s", error.message);
+        this.log('[!] Error setting targetDoorState: %s', error.message);
         callback(error);
       } else {
-        if (value == 1) {
-          this.log("[*] Started closing");
+        if (value === 1) {
+          this.log('[*] Started closing');
           this.simulateClose();
         } else {
-          this.log("[*] Started opening");
+          this.log('[*] Started opening');
           if (this.autoLock) {
             this.autoLockFunction();
           }
@@ -106,7 +107,7 @@ GarageDoorOpener.prototype = {
   },
 
   autoLockFunction: function() {
-    this.log("[+] Waiting %s seconds for autolock", this.autoLockDelay);
+    this.log('[+] Waiting %s seconds for autolock', this.autoLockDelay);
     setTimeout(() => {
       this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSED);
       this.log("[*] Autolocking");
