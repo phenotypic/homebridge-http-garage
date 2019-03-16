@@ -44,7 +44,7 @@ homebridge-http-garage exposes a garage to HomeKit, and makes it controllable vi
 ### Additional options
 | Key | Description | Default |
 | --- | --- | --- |
-| `timeout` _(optional)_ | Time (in milliseconds) until the accessory will be marked as "Not Responding" if it is unreachable | `5000` |
+| `timeout` _(optional)_ | Time (in milliseconds) until the accessory will be marked as "Not Responding" if it is unreachable | `3000` |
 | `http_method` _(optional)_ | The HTTP method used to communicate with the thermostat | `GET` |
 | `username` _(optional)_ | Username if HTTP authentication is enabled | N/A |
 | `password` _(optional)_ | Password if HTTP authentication is enabled | N/A |
