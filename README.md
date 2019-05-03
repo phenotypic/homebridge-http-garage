@@ -1,16 +1,16 @@
 # homebridge-http-garage
 
-#### Homebridge plugin to control a web-based garage
+[![npm](https://img.shields.io/npm/dt/homebridge-http-garage.svg)](https://www.npmjs.com/package/homebridge-http-garage) [![npm](https://img.shields.io/npm/v/homebridge-http-garage.svg)](https://www.npmjs.com/package/homebridge-http-garage)
 
 ## Description
 
-homebridge-http-garage exposes a garage to HomeKit, and makes it controllable via simple HTTP requests, automatically simulating opening/closing times.
+This [homebridge](https://github.com/nfarina/homebridge) plugin exposes a web-based garage opener to to Apple's [HomeKit](http://www.apple.com/ios/home/). Using simple HTTP requests, you can turn open/close the garage.
 
 ## Installation
 
 1. Install [homebridge](https://github.com/nfarina/homebridge#installation-details)
-2. Install this plugin: `sudo npm install -g homebridge-http-garage`
-3. Update your `config.json` file (See below).
+2. Install this plugin: `npm install -g homebridge-http-garage`
+3. Update your `config.json`
 
 ## Configuration
 
