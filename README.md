@@ -45,7 +45,7 @@ This [homebridge](https://github.com/nfarina/homebridge) plugin exposes a web-ba
 | Key | Description | Default |
 | --- | --- | --- |
 | `timeout` _(optional)_ | Time (in milliseconds) until the accessory will be marked as "Not Responding" if it is unreachable | `3000` |
-| `http_method` _(optional)_ | The HTTP method used to communicate with the thermostat | `GET` |
+| `http_method` _(optional)_ | The HTTP method used to communicate with the device | `GET` |
 | `username` _(optional)_ | Username if HTTP authentication is enabled | N/A |
 | `password` _(optional)_ | Password if HTTP authentication is enabled | N/A |
 | `model` _(optional)_ | Appears under the "Model" field for the device | `homebridge-http-garage` |
