@@ -125,7 +125,8 @@ GarageDoorOpener.prototype = {
     this.informationService
       .setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
       .setCharacteristic(Characteristic.Model, this.model)
-      .setCharacteristic(Characteristic.SerialNumber, this.serial);
+      .setCharacteristic(Characteristic.SerialNumber, this.serial)
+      .setCharacteristic(Characteristic.FirmwareRevision, this.firmware);
 
     this.service
       .getCharacteristic(Characteristic.TargetDoorState)
