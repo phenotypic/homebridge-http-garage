@@ -1,5 +1,6 @@
 var Service, Characteristic;
-var request = require('request');
+const request = require('request');
+const packageJson = require('./package.json')
 
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
@@ -12,9 +13,10 @@ function GarageDoorOpener(log, config) {
 
   this.name = config.name;
 
-  this.manufacturer = config.manufacturer || 'Tom Rodrigues';
-  this.serial = config.serial;
-  this.model = config.model || 'homebridge-http-garage';
+  this.manufacturer = config.manufacturer || packageJson.author.name;
+  this.serial = config.serial || packageJson.version;
+  this.model = config.model || packageJson.name;
+  this.firmware = config.firmware || packageJson.version;
 
   this.username = config.username || null;
   this.password = config.password || null;
