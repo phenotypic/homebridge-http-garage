@@ -2,13 +2,9 @@
 
 [![npm](https://img.shields.io/npm/v/homebridge-http-garage.svg)](https://www.npmjs.com/package/homebridge-http-garage) [![npm](https://img.shields.io/npm/dt/homebridge-http-garage.svg)](https://www.npmjs.com/package/homebridge-http-garage)
 
-## _NOTE_
-
-**This plugin provides no way to get the real state of the device. Please look at [homebridge-web-garage](https://github.com/Tommrodrigues/homebridge-web-garage) if you want a plugin that allows for real-time updates.**
-
 ## Description
 
-This [homebridge](https://github.com/nfarina/homebridge) plugin exposes a web-based garage opener to Apple's [HomeKit](http://www.apple.com/ios/home/). Using simple HTTP requests, the plugin allows you to open/close the garage.
+This [homebridge](https://github.com/nfarina/homebridge) plugin exposes a web-based garage opener to Apple's [HomeKit](http://www.apple.com/ios/home/). Using simple HTTP requests, the plugin allows you to open/close the garage. **Please look at [homebridge-web-garage](https://github.com/Tommrodrigues/homebridge-web-garage) if you want a plugin that allows for real-time status updates.**
 
 ## Installation
 
