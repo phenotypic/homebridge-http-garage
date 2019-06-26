@@ -39,8 +39,6 @@ function GarageDoorOpener (log, config) {
     }
   }
 
-  this.log('%s initialized', this.name)
-
   this.service = new Service.GarageDoorOpener(this.name)
 }
 
@@ -67,7 +65,7 @@ GarageDoorOpener.prototype = {
 
   setTargetDoorState: function (value, callback) {
     var url
-    this.log('[+] Setting targetDoorState to %s', value)
+    this.log('Setting targetDoorState to %s', value)
     if (value === 1) {
       url = this.closeURL
     } else {
@@ -75,14 +73,14 @@ GarageDoorOpener.prototype = {
     }
     this._httpRequest(url, '', this.http_method, function (error, response, responseBody) {
       if (error) {
-        this.log.warn('[!] Error setting targetDoorState: %s', error.message)
+        this.log.warn('Error setting targetDoorState: %s', error.message)
         callback(error)
       } else {
         if (value === 1) {
-          this.log('[*] Started closing')
+          this.log('Started closing')
           this.simulateClose()
         } else {
-          this.log('[*] Started opening')
+          this.log('Started opening')
           if (this.autoLock) {
             this.autoLockFunction()
           }
@@ -97,7 +95,7 @@ GarageDoorOpener.prototype = {
     this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPENING)
     setTimeout(() => {
       this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN)
-      this.log('[*] Finished opening')
+      this.log('Finished opening')
     }, this.openTime * 1000)
   },
 
@@ -105,15 +103,15 @@ GarageDoorOpener.prototype = {
     this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING)
     setTimeout(() => {
       this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED)
-      this.log('[*] Finished closing')
+      this.log('Finished closing')
     }, this.closeTime * 1000)
   },
 
   autoLockFunction: function () {
-    this.log('[+] Waiting %s seconds for autolock', this.autoLockDelay)
+    this.log('Waiting %s seconds for autolock', this.autoLockDelay)
     setTimeout(() => {
       this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSED)
-      this.log('[*] Autolocking')
+      this.log('Autolocking...')
     }, this.autoLockDelay * 1000)
   },
 
