@@ -1,6 +1,6 @@
 var Service, Characteristic
-const request = require('request')
 const packageJson = require('./package.json')
+const request = require('request')
 
 module.exports = function (homebridge) {
   Service = homebridge.hap.Service
