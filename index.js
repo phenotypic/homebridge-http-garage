@@ -13,6 +13,15 @@ function GarageDoorOpener (log, config) {
 
   this.name = config.name
 
+  this.openURL = config.openURL
+  this.closeURL = config.closeURL
+
+  this.openTime = config.openTime || 5
+  this.closeTime = config.closeTime || 5
+
+  this.autoLock = config.autoLock || false
+  this.autoLockDelay = config.autoLockDelay || 10
+
   this.manufacturer = config.manufacturer || packageJson.author.name
   this.serial = config.serial || packageJson.version
   this.model = config.model || packageJson.name
@@ -22,15 +31,6 @@ function GarageDoorOpener (log, config) {
   this.password = config.password || null
   this.timeout = config.timeout || 3000
   this.http_method = config.http_method || 'GET'
-
-  this.openURL = config.openURL
-  this.closeURL = config.closeURL
-
-  this.openTime = config.openTime || 5
-  this.closeTime = config.closeTime || 5
-
-  this.autoLock = config.autoLock || false
-  this.autoLockDelay = config.autoLockDelay || 10
 
   if (this.username != null && this.password != null) {
     this.auth = {
