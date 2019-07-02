@@ -36,8 +36,8 @@ This [homebridge](https://github.com/nfarina/homebridge) plugin exposes a web-ba
 ### Optional fields
 | Key | Description | Default |
 | --- | --- | --- |
-| `openTime` _(optional)_ | Time (in seconds) to simulate your garage opening | `5` |
-| `closeTime` _(optional)_ | Time (in seconds) to simulate your garage closing | `5` |
+| `openTime` _(optional)_ | Time (in seconds) to simulate your garage opening | `10` |
+| `closeTime` _(optional)_ | Time (in seconds) to simulate your garage closing | `10` |
 | `autoLock` _(optional)_ | Whether your garage should auto-close after being opened | `false` |
 | `autoLockDelay` _(optional)_ | Time (in seconds) until your garage will automatically close (if enabled) | `10` |
 
