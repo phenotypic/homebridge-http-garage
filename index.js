@@ -16,11 +16,11 @@ function GarageDoorOpener (log, config) {
   this.openURL = config.openURL
   this.closeURL = config.closeURL
 
-  this.openTime = config.openTime || 5
-  this.closeTime = config.closeTime || 5
+  this.openTime = config.openTime || 10
+  this.closeTime = config.closeTime || 10
 
   this.autoLock = config.autoLock || false
-  this.autoLockDelay = config.autoLockDelay || 10
+  this.autoLockDelay = config.autoLockDelay || 20
 
   this.manufacturer = config.manufacturer || packageJson.author.name
   this.serial = config.serial || packageJson.version
@@ -92,17 +92,17 @@ GarageDoorOpener.prototype = {
   },
 
   simulateOpen: function () {
-    this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPENING)
+    this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(2)
     setTimeout(() => {
-      this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN)
+      this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(0)
       this.log('Finished opening')
     }, this.openTime * 1000)
   },
 
   simulateClose: function () {
-    this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING)
+    this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(3)
     setTimeout(() => {
-      this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED)
+      this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(1)
       this.log('Finished closing')
     }, this.closeTime * 1000)
   },
@@ -110,14 +110,14 @@ GarageDoorOpener.prototype = {
   autoLockFunction: function () {
     this.log('Waiting %s seconds for autolock', this.autoLockDelay)
     setTimeout(() => {
-      this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSED)
+      this.service.setCharacteristic(Characteristic.TargetDoorState, 1)
       this.log('Autolocking...')
     }, this.autoLockDelay * 1000)
   },
 
   getServices: function () {
-    this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED)
-    this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSED)
+    this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(1)
+    this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(1)
 
     this.informationService = new Service.AccessoryInformation()
     this.informationService
