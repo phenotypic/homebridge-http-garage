@@ -65,7 +65,7 @@ GarageDoorOpener.prototype = {
 
   setTargetDoorState: function (value, callback) {
     var url
-    this.log('Setting targetDoorState to %s', value)
+    this.log.debug('Setting targetDoorState to %s', value)
     if (value === 1) {
       url = this.closeURL
     } else {
