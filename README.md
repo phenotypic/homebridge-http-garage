@@ -36,19 +36,19 @@ This [homebridge](https://github.com/nfarina/homebridge) plugin exposes a web-ba
 ### Optional fields
 | Key | Description | Default |
 | --- | --- | --- |
-| `openTime` _(optional)_ | Time (in seconds) to simulate your garage opening | `10` |
-| `closeTime` _(optional)_ | Time (in seconds) to simulate your garage closing | `10` |
-| `autoLock` _(optional)_ | Whether your garage should auto-close after being opened | `false` |
-| `autoLockDelay` _(optional)_ | Time (in seconds) until your garage will automatically close (if enabled) | `20` |
+| `openTime` | Time (in seconds) to simulate your garage opening | `10` |
+| `closeTime` | Time (in seconds) to simulate your garage closing | `10` |
+| `autoLock` | Whether your garage should auto-close after being opened | `false` |
+| `autoLockDelay` | Time (in seconds) until your garage will automatically close (if enabled) | `20` |
 
 ### Additional options
 | Key | Description | Default |
 | --- | --- | --- |
-| `timeout` _(optional)_ | Time (in milliseconds) until the accessory will be marked as _Not Responding_ if it is unreachable | `3000` |
-| `http_method` _(optional)_ | HTTP method used to communicate with the device | `GET` |
-| `username` _(optional)_ | Username if HTTP authentication is enabled | N/A |
-| `password` _(optional)_ | Password if HTTP authentication is enabled | N/A |
-| `model` _(optional)_ | Appears under the _Model_ field for the accessory | plugin |
-| `serial` _(optional)_ | Appears under the _Serial_ field for the accessory | version |
-| `manufacturer` _(optional)_ | Appears under the _Manufacturer_ field for the accessory | author |
-| `firmware` _(optional)_ | Appears under the _Firmware_ field for the accessory | version |
+| `timeout` | Time (in milliseconds) until the accessory will be marked as _Not Responding_ if it is unreachable | `3000` |
+| `http_method` | HTTP method used to communicate with the device | `GET` |
+| `username` | Username if HTTP authentication is enabled | N/A |
+| `password` | Password if HTTP authentication is enabled | N/A |
+| `model` | Appears under the _Model_ field for the accessory | plugin |
+| `serial` | Appears under the _Serial_ field for the accessory | version |
+| `manufacturer` | Appears under the _Manufacturer_ field for the accessory | author |
+| `firmware` | Appears under the _Firmware_ field for the accessory | version |
