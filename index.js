@@ -78,6 +78,7 @@ GarageDoorOpener.prototype = {
         callback(error)
       } else {
         this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(responseBody)
+        this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(responseBody)
         this.log('Updated state to: %s', responseBody)
         callback()
       }
