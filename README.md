@@ -58,7 +58,7 @@ Find script samples for the opener in the _examples_ folder.
 | `manufacturer` | Appears under the _Manufacturer_ field for the accessory | author |
 | `firmware` | Appears under the _Firmware_ field for the accessory | version |
 
-### State key
+## State key
 | State | Description |
 | --- | --- |
 | `0` | Open |
