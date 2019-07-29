@@ -137,9 +137,6 @@ GarageDoorOpener.prototype = {
   },
 
   getServices: function () {
-    this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(1)
-    this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(1)
-
     this.informationService = new Service.AccessoryInformation()
     this.informationService
       .setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
@@ -157,6 +154,9 @@ GarageDoorOpener.prototype = {
       setInterval(function () {
         this._getStatus(function () {})
       }.bind(this), this.pollInterval * 1000)
+    } else {
+      this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(1)
+      this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(1)
     }
 
     return [this.informationService, this.service]
