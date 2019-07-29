@@ -60,6 +60,6 @@ Find script samples for the opener in the _examples_ folder.
 
 ### State key
 | State | Description |
-| --- | --- | --- |
+| --- | --- |
 | `0` | Open |
 | `1` | Closed |
