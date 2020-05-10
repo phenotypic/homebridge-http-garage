@@ -79,7 +79,7 @@ GarageDoorOpener.prototype = {
       } else {
         this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(responseBody)
         this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(responseBody)
-        this.log('Updated state to: %s', responseBody)
+        this.log.debug('Updated state to: %s', responseBody)
         callback()
       }
     }.bind(this))
