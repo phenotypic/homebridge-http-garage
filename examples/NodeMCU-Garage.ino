@@ -20,7 +20,6 @@ const char* mdns = "garage"; // mDNS name
 const int momentaryOn = 1000; // Delay time for the on state (ms)
 //////////////////////////////////////////////////////////////
 
-
 // The certificate is stored in PMEM
 static const uint8_t x509[] PROGMEM = {
 
