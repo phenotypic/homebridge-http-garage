@@ -29,8 +29,7 @@ Find script samples for the opener in the _examples_ folder.
      {
        "accessory": "GarageDoorOpener",
        "name": "Garage",
-       "openURL": "http://myurl.com/open",
-       "closeURL": "http://myurl.com/close"
+        "apiroute": "http://myurl.com"
      }
 ]
 ```
@@ -40,8 +39,7 @@ Find script samples for the opener in the _examples_ folder.
 | --- | --- | --- |
 | `accessory` | Must be `GarageDoorOpener` | N/A |
 | `name` | Name to appear in the Home app | N/A |
-| `openURL` | URL to trigger the opening of your garage | N/A |
-| `closeURL` | URL to trigger the closing of your garage | N/A |
+| `apiroute` | Root URL of your device | N/A |
 
 ### Optional fields
 | Key | Description | Default |
