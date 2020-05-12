@@ -50,9 +50,7 @@ Find script samples for the opener in the _examples_ folder.
 | `closeTime` | Time (in seconds) to simulate your garage closing | `10` |
 | `autoLock` | Whether your garage should auto-close after being opened | `false` |
 | `autoLockDelay` | Time (in seconds) until your garage will automatically close (if enabled) | `20` |
-| `polling` | Whether the state should be polled at intervals | `false` |
 | `pollInterval` | Time (in seconds) between device polls (if `polling` is enabled) | `120` |
-| `statusURL` | URL to retrieve state on poll (should return `0` or `1`) | N/A |
 
 ### Additional options
 | Key | Description | Default |
@@ -65,6 +63,22 @@ Find script samples for the opener in the _examples_ folder.
 | `serial` | Appears under the _Serial_ field for the accessory | version |
 | `manufacturer` | Appears under the _Manufacturer_ field for the accessory | author |
 | `firmware` | Appears under the _Firmware_ field for the accessory | version |
+
+## API Interfacing
+
+Your API should be able to:
+
+1. Return JSON information when it receives `/status`:
+```
+{
+    "currentState": INT_VALUE
+}
+```
+
+2. Set the state when it receives:
+```
+/setState?value=INT_VALUE
+```
 
 ## State key
 | State | Description |
