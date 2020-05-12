@@ -30,7 +30,6 @@ function GarageDoorOpener (log, config) {
   this.timeout = config.timeout || 3000
   this.http_method = config.http_method || 'GET'
 
-  this.polling = config.polling || false
   this.pollInterval = config.pollInterval || 120
 
   if (this.username != null && this.password != null) {
@@ -145,16 +144,11 @@ GarageDoorOpener.prototype = {
       .getCharacteristic(Characteristic.TargetDoorState)
       .on('set', this.setTargetDoorState.bind(this))
 
-    if (this.polling) {
-      this._getStatus(function () {})
+    this._getStatus(function () {})
 
-      setInterval(function () {
-        this._getStatus(function () {})
-      }.bind(this), this.pollInterval * 1000)
-    } else {
-      this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(1)
-      this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(1)
-    }
+    setInterval(function () {
+      this._getStatus(function () {})
+    }.bind(this), this.pollInterval * 1000)
 
     return [this.informationService, this.service]
   }
