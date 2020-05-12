@@ -12,9 +12,7 @@ function GarageDoorOpener (log, config) {
   this.log = log
 
   this.name = config.name
-
-  this.openURL = config.openURL
-  this.closeURL = config.closeURL
+  this.apiroute = config.apiroute
 
   this.openTime = config.openTime || 10
   this.closeTime = config.closeTime || 10
@@ -34,7 +32,6 @@ function GarageDoorOpener (log, config) {
 
   this.polling = config.polling || false
   this.pollInterval = config.pollInterval || 120
-  this.statusURL = config.statusURL
 
   if (this.username != null && this.password != null) {
     this.auth = {
@@ -68,7 +65,7 @@ GarageDoorOpener.prototype = {
   },
 
   _getStatus: function (callback) {
-    var url = this.statusURL
+    var url = this.apiroute + '/status'
     this.log.debug('Getting status: %s', url)
 
     this._httpRequest(url, '', 'GET', function (error, response, responseBody) {
@@ -77,27 +74,26 @@ GarageDoorOpener.prototype = {
         this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(new Error('Polling failed'))
         callback(error)
       } else {
-        this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(responseBody)
-        this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(responseBody)
-        this.log.debug('Updated state to: %s', responseBody)
+        this.log.debug('Device response: %s', responseBody)
+        var json = JSON.parse(responseBody)
+        this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(json.currentState)
+        this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(json.currentState)
+        this.log.debug('Updated state to: %s', json.currentState)
         callback()
       }
     }.bind(this))
   },
 
   setTargetDoorState: function (value, callback) {
-    var url
-    this.log.debug('Setting targetDoorState to %s', value)
-    if (value === 1) {
-      url = this.closeURL
-    } else {
-      url = this.openURL
-    }
+    var url = this.apiroute + '/setState?value=' + value
+    this.log.debug('Setting state: %s', url)
+
     this._httpRequest(url, '', this.http_method, function (error, response, responseBody) {
       if (error) {
-        this.log.warn('Error setting targetDoorState: %s', error.message)
+        this.log.warn('Error setting state: %s', error.message)
         callback(error)
       } else {
+        this.log('Set state to %s', value)
         if (value === 1) {
           this.log('Started closing')
           this.simulateClose()
