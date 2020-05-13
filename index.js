@@ -27,7 +27,7 @@ function GarageDoorOpener (log, config) {
 
   this.username = config.username || null
   this.password = config.password || null
-  this.timeout = config.timeout || 3000
+  this.timeout = config.timeout || 5000
   this.http_method = config.http_method || 'GET'
 
   this.pollInterval = config.pollInterval || 120
