@@ -4,7 +4,7 @@
 #include <ESP8266mDNS.h>
 #include <ArduinoJson.h>
 
-// GitHub Page = https://github.com/Tommrodrigues/homebridge-http-garage
+// GitHub Page = https://github.com/phenotypic/homebridge-http-garage
 
 // Script Type = Relay Momentary
 

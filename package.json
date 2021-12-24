@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tommrodrigues/homebridge-http-garage.git"
+    "url": "git+https://github.com/phenotypic/homebridge-http-garage.git"
   },
   "dependencies": {
     "request": ">=2.88.0"
@@ -20,10 +20,10 @@
   "keywords": [
     "homebridge-plugin"
   ],
-  "author": "Tom Rodrigues",
+  "author": "phenotypic",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Tommrodrigues/homebridge-http-garage/issues"
+    "url": "https://github.com/phenotypic/homebridge-http-garage/issues"
   },
-  "homepage": "https://github.com/Tommrodrigues/homebridge-http-garage#readme"
+  "homepage": "https://github.com/phenotypic/homebridge-http-garage#readme"
 }

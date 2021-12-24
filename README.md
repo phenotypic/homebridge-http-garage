@@ -12,7 +12,7 @@
 
 ## Description
 
-This [homebridge](https://github.com/nfarina/homebridge) plugin exposes a web-based garage opener to Apple's [HomeKit](http://www.apple.com/ios/home/). Using simple HTTP requests, the plugin allows you to open/close the garage. **Please look at [homebridge-web-garage](https://github.com/Tommrodrigues/homebridge-web-garage) if you want a plugin that allows for real-time status updates.**
+This [homebridge](https://github.com/nfarina/homebridge) plugin exposes a web-based garage opener to Apple's [HomeKit](http://www.apple.com/ios/home/). Using simple HTTP requests, the plugin allows you to open/close the garage. **Please look at [homebridge-web-garage](https://github.com/phenotypic/homebridge-web-garage) if you want a plugin that allows for real-time status updates.**
 
 Find script samples for the opener in the _examples_ folder.
 
