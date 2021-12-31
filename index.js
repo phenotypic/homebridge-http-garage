@@ -20,7 +20,7 @@ function GarageDoorOpener (log, config) {
   this.autoLock = config.autoLock || false
   this.autoLockDelay = config.autoLockDelay || 20
 
-  this.manufacturer = config.manufacturer || packageJson.author.name
+  this.manufacturer = config.manufacturer || packageJson.author
   this.serial = config.serial || this.apiroute
   this.model = config.model || packageJson.name
   this.firmware = config.firmware || packageJson.version
