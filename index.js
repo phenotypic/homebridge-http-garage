@@ -74,11 +74,15 @@ GarageDoorOpener.prototype = {
         callback(error)
       } else {
         this.log.debug('Device response: %s', responseBody)
-        var json = JSON.parse(responseBody)
-        this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(json.currentState)
-        this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(json.currentState)
-        this.log.debug('Updated state to: %s', json.currentState)
-        callback()
+        try {
+          var json = JSON.parse(responseBody)
+          this.service.getCharacteristic(Characteristic.CurrentDoorState).updateValue(json.currentState)
+          this.service.getCharacteristic(Characteristic.TargetDoorState).updateValue(json.currentState)
+          this.log.debug('Updated state to: %s', json.currentState)
+          callback()
+        } catch (e) {
+          this.log.warn('Error parsing status: %s', e.message)
+        }
       }
     }.bind(this))
   },
